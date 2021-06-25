@@ -24,4 +24,10 @@ public class Player {
     public String toString() {
         return name + ": " + kills;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        final Player other = (Player) obj;
+        return (this.name.equals(other.name));
+    }
 }

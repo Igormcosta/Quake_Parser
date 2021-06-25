@@ -28,6 +28,23 @@ public class Game {
         return Players;
     }
 
+    public void Kills(Player p) {
+        //aumenta o total de kills e adiciona o player
+        this.totalKills = this.totalKills + 1;
+        if (Players.contains(p)) {
+            int index = Players.indexOf(p);
+            int kill = Players.get(index).getKills() + 1;
+            Players.get(index).setKills(kill);
+        } else {
+            p.setKills(1);
+            Players.add(p);
+        }
+
+    }
+    public void worldKills(){
+
+    }
+
     @Override
     public String toString() {
         return "Game" + "_" + gameNumber + "{" +
