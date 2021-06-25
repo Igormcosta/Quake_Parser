@@ -1,14 +1,30 @@
 package com.company.parser;
 
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.charset.StandardCharsets;
+import java.io.BufferedReader;
 
 public class Parser {
     public Parser(String log) throws IOException {
-        String txtConteudo;
-        txtConteudo = new String(Files.readAllBytes(Paths.get(log)), StandardCharsets.UTF_8);
-        System.out.println(txtConteudo);
+        int gamerCount = 0;
+        BufferedReader br = new BufferedReader(new FileReader(log));
+        for (String line; (line = br.readLine()) != null; ) {
+            //leitura linha por linha
+
+            if (line.contains("InitGame:")) {
+                // o jogo inicia
+                do {
+                    System.out.println(line);
+                    line = br.readLine();
+                } while (!(line.contains("ShutdownGame:")));
+                //termina quando encontrar "ShutdownGame:"
+            }
+        }
     }
+
+    private String Parts(String line) {
+        String[] parts;
+        return null;
+    }
+
 }
