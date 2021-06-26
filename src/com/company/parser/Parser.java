@@ -26,15 +26,7 @@ public class Parser {
 
                     if (line.contains("Kill:")) {
                         //encontrou uma kill
-                        if (line.contains("<world>")) {
-                            //kill do "<world>"
-
-                        } else {
-                            //kill de player
-                            Killer(line, g);
-
-                        }
-
+                        Killer(line, g);
                     }
                     line = br.readLine();
                 } while (!(line.contains("ShutdownGame:")));
@@ -52,7 +44,7 @@ public class Parser {
         String ID = parts[2].trim();
         String nick = ID.substring(ID.indexOf(" n\\") + 3, ID.indexOf("\\t"));
         ID = ID.substring(0, ID.indexOf(" "));
-        Player aux = new Player(ID,nick);
+        Player aux = new Player(ID, nick);
         if (g.getPlayers().contains(aux)) {
             int index = g.getPlayers().indexOf(aux);
             g.getPlayers().get(index).setName(aux.getName());
@@ -65,15 +57,19 @@ public class Parser {
         //contabilizando a kill
         String[] parts = line.split(":");
         String ID = parts[2].trim();
-        ID = ID.substring(0, ID.indexOf(" "));
-        Player aux = new Player(ID," ");
-        g.Kills(aux);
-    }
+        String IDfinal = ID.substring(0, ID.indexOf(" "));
+        if (IDfinal.compareTo("1022") == 0) {
+            //worldkill
+            String IDmorto = ID.substring(ID.indexOf(" ")).trim();
+            IDmorto = IDmorto.split(" ")[0];
+            Player aux = new Player(IDmorto, " ");
+            g.worldKills(aux);
 
-    private String worldKill(String line, Game g) {
-        //encontrar o nome do jogador morto
-
-        return null;
+        } else {
+            //playerkill
+            Player aux = new Player(IDfinal, " ");
+            g.Kills(aux);
+        }
     }
 
 

@@ -37,8 +37,16 @@ public class Game {
         Players.get(index).setKills(kill);
     }
 
-    public void worldKills() {
+    public void worldKills(Player p) {
         //aumenta a quantidade de kills total e diminui em 1 do jogador que morreu
+        this.totalKills = this.totalKills + 1;
+        int index = Players.indexOf(p);
+        int kill = (Players.get(index).getKills()) - 1;
+        if(kill<0){
+            //não pode ter kills negativas
+            kill=0;
+        }
+        Players.get(index).setKills(kill);
     }
 
 
