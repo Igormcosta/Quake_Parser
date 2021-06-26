@@ -4,11 +4,11 @@ import java.util.LinkedList;
 
 public class Game {
     private int totalKills;
-    private int gameNumber;
+    private int ID;
     private LinkedList<Player> Players;
 
-    public Game(int gameNumber) {
-        this.gameNumber = gameNumber;
+    public Game(int ID) {
+        this.ID = ID;
         Players = new LinkedList<>();
     }
 
@@ -20,8 +20,8 @@ public class Game {
         this.totalKills = totalKills;
     }
 
-    public int getGameNumber() {
-        return gameNumber;
+    public int getID() {
+        return ID;
     }
 
     public LinkedList<Player> getPlayers() {
@@ -42,9 +42,9 @@ public class Game {
         this.totalKills = this.totalKills + 1;
         int index = Players.indexOf(p);
         int kill = (Players.get(index).getKills()) - 1;
-        if(kill<0){
+        if (kill < 0) {
             //não pode ter kills negativas
-            kill=0;
+            kill = 0;
         }
         Players.get(index).setKills(kill);
     }
@@ -52,9 +52,15 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game" + "_" + gameNumber + ": {\n" +
+        return "Game" + "_" + ID + ": {\n" +
                 "totalKills: " + totalKills + ";" +
                 "\nPlayers e kills: " + Players +
                 "\n}";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        final Game other = (Game) obj;
+        return (this.ID == other.ID);
     }
 }

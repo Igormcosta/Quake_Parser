@@ -2,13 +2,19 @@ package com.company.parser;
 
 import com.company.objects.Game;
 import com.company.objects.Player;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
-import java.util.Arrays;
+import java.util.LinkedList;
+
 
 public class Parser {
+    private LinkedList<Game> Games = new LinkedList<>();
+
+    public LinkedList<Game> getGames() {
+        return Games;
+    }
+
     public Parser(String log) throws IOException {
         int gameCount = 0;
         BufferedReader br = new BufferedReader(new FileReader(log));
@@ -31,8 +37,7 @@ public class Parser {
                     line = br.readLine();
                 } while (!(line.contains("ShutdownGame:")));
                 //termina quando encontrar "ShutdownGame:"
-                System.out.println(g);
-                System.out.println("");
+                Games.add(g);
             }
 
         }
