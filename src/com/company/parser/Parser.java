@@ -22,8 +22,6 @@ public class Parser {
                 do {
                     if (line.contains("ClientUserinfoChanged:")) {
                         playerSave(line, g);
-
-
                     }
 
                     if (line.contains("Kill:")) {
@@ -33,7 +31,7 @@ public class Parser {
 
                         } else {
                             //kill de player
-
+                            Killer(line, g);
 
                         }
 
@@ -48,26 +46,28 @@ public class Parser {
         }
     }
 
-    private Game playerSave(String line, Game g) {
+    private void playerSave(String line, Game g) {
         //adiciona players ao game e altera nomes
         String[] parts = line.split(":");
         String ID = parts[2].trim();
-        String nick = ID.substring(ID.indexOf(" n\\")+3, ID.indexOf("\\t"));
-        ID = ID.substring(0,ID.indexOf(" "));
-        Player aux = new Player(ID, nick);
-        if(g.getPlayers().contains(aux)){
+        String nick = ID.substring(ID.indexOf(" n\\") + 3, ID.indexOf("\\t"));
+        ID = ID.substring(0, ID.indexOf(" "));
+        Player aux = new Player(ID,nick);
+        if (g.getPlayers().contains(aux)) {
             int index = g.getPlayers().indexOf(aux);
             g.getPlayers().get(index).setName(aux.getName());
-        }else{
+        } else {
             g.getPlayers().add(aux);
         }
-        return null;
     }
 
-    private String Killer(String line) {
+    private void Killer(String line, Game g) {
         //contabilizando a kill
-
-        return null;
+        String[] parts = line.split(":");
+        String ID = parts[2].trim();
+        ID = ID.substring(0, ID.indexOf(" "));
+        Player aux = new Player(ID," ");
+        g.Kills(aux);
     }
 
     private String worldKill(String line, Game g) {
