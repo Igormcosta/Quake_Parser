@@ -1,15 +1,21 @@
 package com.company.objects;
 
 public class Player {
+    private String ID;
     private String name;
     private int kills;
 
-    public Player(String name) {
+    public Player(String ID, String name) {
+        this.ID = ID;
         this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getKills() {
@@ -28,6 +34,6 @@ public class Player {
     @Override
     public boolean equals(Object obj) {
         final Player other = (Player) obj;
-        return (this.name.equals(other.name));
+        return (this.ID.equals(other.ID));
     }
 }

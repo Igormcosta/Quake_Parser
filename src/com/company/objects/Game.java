@@ -30,7 +30,7 @@ public class Game {
 
 
     public void Kills(Player p) {
-        //aumenta o total de kills e adiciona o player
+        //aumenta o total de kills global se pessoais
         this.totalKills = this.totalKills + 1;
         int index = Players.indexOf(p);
         int kill = Players.get(index).getKills() + 1;
