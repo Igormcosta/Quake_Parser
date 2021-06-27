@@ -3,6 +3,7 @@ package com.company.main;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+
 import com.company.objects.Game;
 import com.company.parser.Parser;
 
@@ -14,7 +15,7 @@ public class Main {
         try {
             Parser sc = new Parser(arq.getPath());
             Scanner s = new Scanner(System.in);
-            System.out.println("menu");
+            System.out.println("Menu:");
             int op, QTD = 0;
             do {
                 System.out.println("1-Buscar por ID de jogo");
@@ -59,7 +60,7 @@ public class Main {
                 }
             } while (op != 0);
         } catch (IOException ex) {
-            System.out.println("FIM");
+            System.out.println("Erro ao carregar arquivo");
         }
 
     }

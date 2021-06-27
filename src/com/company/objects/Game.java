@@ -24,6 +24,14 @@ public class Game {
         return ID;
     }
 
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setPlayers(LinkedList<Player> players) {
+        Players = players;
+    }
+
     public LinkedList<Player> getPlayers() {
         return Players;
     }
@@ -60,6 +68,7 @@ public class Game {
 
     @Override
     public boolean equals(Object obj) {
+        //comparar IDs de dois jogos
         final Game other = (Game) obj;
         return (this.ID == other.ID);
     }

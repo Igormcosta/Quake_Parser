@@ -2,6 +2,7 @@ package com.company.parser;
 
 import com.company.objects.Game;
 import com.company.objects.Player;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -27,6 +28,7 @@ public class Parser {
                 Game g = new Game(gameCount);
                 do {
                     if (line.contains("ClientUserinfoChanged:")) {
+                        //encontra uma conf de user sendo modificada ou adicionada
                         playerSave(line, g);
                     }
 
@@ -44,7 +46,7 @@ public class Parser {
     }
 
     private void playerSave(String line, Game g) {
-        //adiciona players ao game e altera nomes
+        //adiciona players ao game e/ou altera nomes
         String[] parts = line.split(":");
         String ID = parts[2].trim();
         String nick = ID.substring(ID.indexOf(" n\\") + 3, ID.indexOf("\\t"));
@@ -69,7 +71,6 @@ public class Parser {
             IDmorto = IDmorto.split(" ")[0];
             Player aux = new Player(IDmorto, " ");
             g.worldKills(aux);
-
         } else {
             //playerkill
             Player aux = new Player(IDfinal, " ");
